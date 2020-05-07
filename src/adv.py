@@ -85,7 +85,7 @@ while not user == "q":
         user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
         userList = user.split(" ")
 
-    # elif len(userList) == 2:
-    #     if userList[0] == ""
+    elif len(userList) == 2:
+        if userList[0] == ""
 
         

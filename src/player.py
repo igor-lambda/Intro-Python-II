@@ -34,3 +34,17 @@ class Player:
         except:
             print("Can't go in that direction")
     
+    def pickup_item(self, item_name):
+        # find item by name
+        item = None
+        for i in self.current_room.items:
+            if i.name == item_name:
+                item = i
+        # take item out of current rooms items list
+        self.current_room.remove_item(item)
+        # add item to player inventory
+        self.add_to_inventory(item)
+        # toggle item's picked_up property
+        item.pick()
+        self.announce()
+    
