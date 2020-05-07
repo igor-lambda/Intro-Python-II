@@ -1,4 +1,6 @@
 from room import Room
+from player import Player
+
 
 # Declare all the rooms
 
@@ -35,7 +37,7 @@ room['treasure'].s_to = room['narrow']
 
 #
 # Main
-#
+
 
 # Make a new player object that is currently in the 'outside' room.
 
@@ -49,3 +51,41 @@ room['treasure'].s_to = room['narrow']
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+
+player = Player("Igor", room["outside"])
+print(player.state_current_room())
+user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+
+while not user == "q":
+    #user chooses north
+    print('user: ', user)
+    if user == "n":
+        try: 
+            player.set_current_room(player.current_room.n_to)
+            print("You have entered", player.current_room)
+        except:
+            print("Can't go north from here")
+    elif user == "e":
+        try:
+            player.set_current_room(player.current_room.e_to)
+            print("You have entered", player.current_room)
+        except:
+            print("Can't go east from here")
+    elif user == "s":
+        try:
+            player.set_current_room(player.current_room.s_to)
+            print("You have entered", player.current_room)
+        except:
+            print("Can't go south from here")
+    elif user == "w":
+        try:
+            player.set_current_room(player.current_room.w_to)
+            print("You have entered", player.current_room)
+        except:
+            print("Can't go west from here")
+    user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+    
+
+
+        
