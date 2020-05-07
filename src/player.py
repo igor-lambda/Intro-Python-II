@@ -59,14 +59,15 @@ class Player:
     def drop_item(self, item_name):
         #find item by name
         item = None
-        for i in self.iventory.get_items():
+        for i in self.inventory:
             print('itemx', i)
             if i.name == item_name:
                 item = i
+        print('inventory item', item)
         # remove item from inventory
         self.remove_from_inventory(item)
         # add item to current room
-        self.add_to_inventory(item)
+        self.current_room.add_item(item)
         # toggle item's picked_up property
         item.drop()
         self.state_inventory()
