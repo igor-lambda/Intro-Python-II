@@ -1,20 +1,23 @@
 from room import Room
 from player import Player
 from item import Item
-
+from lightsource import LightSource
 
 # Declare all the rooms
 
 room = {
     'outside':  Room("Outside Cave Entrance",
-                     "North of you, the cave mount beckons"),
+                     "North of you, the cave mount beckons",
+                     True),
 
-    'foyer':    Room("Foyer", """Dim light filters in from the south. Dusty
+    'foyer':    Room("Foyer",
+                     """Dim light filters in from the south. Dusty
 passages run north and east."""),
 
     'overlook': Room("Grand Overlook", """A steep cliff appears before you, falling
 into the darkness. Ahead to the north, a light flickers in
-the distance, but there is no way across the chasm."""),
+the distance, but there is no way across the chasm.""",
+                     True),
 
     'narrow':   Room("Narrow Passage", """The narrow passage bends here from west
 to north. The smell of gold permeates the air."""),
@@ -41,11 +44,12 @@ grass = Item("Grass", "Shitty green plant")
 dirt = Item("Dirt", "Brown stuff everywhere")
 potted_plant = Item("Potted_Plant", "Plant in a clay pot")
 
+torch = LightSource('Torch', "Illuminates a darkened room")
 
 # Set room items
-room["outside"].set_items([grass, dirt])
+room["outside"].set_items([grass, dirt, torch])
 room["foyer"].set_items([potted_plant])
-#
+
 # Main
 
 
@@ -72,19 +76,15 @@ user = input(msg)
 
 userList = user.split(" ")
 while not user == "q":
-    #user chooses north
+    # user chooses north
     if len(userList) == 1:
         if user == "n":
-            player.announce()
             player.move_to(player.current_room.n_to)
         elif user == "e":
-            player.announce()
             player.move_to(player.current_room.e_to)
         elif user == "s":
-            player.announce()
             player.move_to(player.current_room.s_to)
         elif user == "w":
-            player.announce()
             player.move_to(player.current_room.w_to)
         elif user == "i" or "inventory":
             player.state_inventory()
@@ -93,23 +93,20 @@ while not user == "q":
         user = input(msg)
         userList = user.split(" ")
 
-    #user chooses to pick up or drop item    
+    # user chooses to pick up or drop item
     elif len(userList) == 2:
         if userList[0] == "get":
             player.pickup_item(userList[1])
         elif userList[0] == "drop":
             player.drop_item(userList[1])
-    
+
         else:
             print('The accetable item verbs are get an drop')
         user = input(msg)
         userList = user.split(" ")
-    #catch all for more than 3 input string
+    
+    # catch all for more than 3 input string
     else:
         print('Too many arguments')
         user = input(msg)
         userList = user.split(" ")
-
-
-
-        
