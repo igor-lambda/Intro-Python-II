@@ -25,6 +25,7 @@ class Room:
         return has
 
     def state_items(self):
+        print("The room contains these items: ")
         if len(self.items) == 0:
             print("No Items")
         else:
