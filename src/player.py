@@ -25,12 +25,12 @@ class Player:
         print(self.state_current_room())
         self.current_room.state_items()
         print("Type 'get <item>' to pick up an item.")
-        print("You currently have {stuff} in your inventory".format(stuff=self.state_inventory()))
+        print("You currently have {stuff} in your inventory \n".format(stuff=self.state_inventory()))
     
     def move_to(self, newRoom):
         try: 
             self.set_current_room(self.current_room.n_to)
             print("You have entered", self.current_room)
         except:
-            print("Can't go north from here")
+            print("Can't go in that direction")
     

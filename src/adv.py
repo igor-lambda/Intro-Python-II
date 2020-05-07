@@ -66,33 +66,22 @@ room["foyer"].set_items([potted_plant])
 player = Player("Igor", room["outside"])
 player.announce()
 user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
-print('userInput', user)
 userList = user.split(" ")
 while not user == "q":
     #user chooses north
-    print('user: ', user)
     if len(userList) == 1:
         if user == "n":
             player.announce()
             player.move_to(player.current_room.n_to)
         elif user == "e":
-            try:
-                player.set_current_room(player.current_room.e_to)
-                print("You have entered", player.current_room)
-            except:
-                print("Can't go east from here")
+            player.announce()
+            player.move_to(player.current_room.e_to)
         elif user == "s":
-            try:
-                player.set_current_room(player.current_room.s_to)
-                print("You have entered", player.current_room)
-            except:
-                print("Can't go south from here")
+            player.announce()
+            player.move_to(player.current_room.s_to)
         elif user == "w":
-            try:
-                player.set_current_room(player.current_room.w_to)
-                print("You have entered", player.current_room)
-            except:
-                print("Can't go west from here")
+            player.announce()
+            player.move_to(player.current_room.w_to)
         user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
         userList = user.split(" ")
 
