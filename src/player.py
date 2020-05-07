@@ -40,20 +40,34 @@ class Player:
 
     def pickup_item(self, item_name):
         # find item by name
-        print('item_name', item_name)
         item = None
         for i in self.current_room.get_items():
-            print('itemx', i)
             if i.name == item_name:
                 item = i
-        # for i in self.current_room.items():
-            # if i.name == item_name:
-            #     item = i
         # take item out of current rooms items list
         self.current_room.remove_item(item)
         # add item to player inventory
         self.add_to_inventory(item)
         # toggle item's picked_up property
         item.pick()
+        self.state_inventory()
+        self.current_room.state_items()
+
+    def remove_from_inventory(self, item):
+        self.inventory.remove(item)
+
+    def drop_item(self, item_name):
+        #find item by name
+        item = None
+        for i in self.iventory.get_items():
+            print('itemx', i)
+            if i.name == item_name:
+                item = i
+        # remove item from inventory
+        self.remove_from_inventory(item)
+        # add item to current room
+        self.add_to_inventory(item)
+        # toggle item's picked_up property
+        item.drop()
         self.state_inventory()
         self.current_room.state_items()

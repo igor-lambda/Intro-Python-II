@@ -88,6 +88,10 @@ while not user == "q":
     elif len(userList) == 2:
         if userList[0] == "get":
             player.pickup_item(userList[1])
+        elif userList[0] == "drop":
+            player.drop_item(userList[1])
+            
+        
         user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
         userList = user.split(" ")
 
