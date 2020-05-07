@@ -52,7 +52,7 @@ class Player:
             print("I can see")
         else:
             self.can_see = False
-            print("I amb lind")
+            print("I amb blind")
         self.announce()
         try:
             self.set_current_room(self.current_room.n_to)
