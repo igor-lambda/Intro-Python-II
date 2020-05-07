@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 
 # Declare all the rooms
@@ -35,6 +36,15 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# Define items
+grass = Item("Grass", "Shitty green plant")
+dirt = Item("Dirst", "Brown stuff everywhere")
+potted_plant = Item("Potted_Plant", "Plant in a clay pot")
+
+
+# Set room items
+room["outside"].set_items([grass, dirt])
+room["foyer"].set_items([potted_plant])
 #
 # Main
 
@@ -54,38 +64,39 @@ room['treasure'].s_to = room['narrow']
 
 
 player = Player("Igor", room["outside"])
-print(player.state_current_room())
+player.announce()
 user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
-
+print('userInput', user)
+userList = user.split(" ")
 while not user == "q":
     #user chooses north
     print('user: ', user)
-    if user == "n":
-        try: 
-            player.set_current_room(player.current_room.n_to)
-            print("You have entered", player.current_room)
-        except:
-            print("Can't go north from here")
-    elif user == "e":
-        try:
-            player.set_current_room(player.current_room.e_to)
-            print("You have entered", player.current_room)
-        except:
-            print("Can't go east from here")
-    elif user == "s":
-        try:
-            player.set_current_room(player.current_room.s_to)
-            print("You have entered", player.current_room)
-        except:
-            print("Can't go south from here")
-    elif user == "w":
-        try:
-            player.set_current_room(player.current_room.w_to)
-            print("You have entered", player.current_room)
-        except:
-            print("Can't go west from here")
-    user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
-    
+    if len(userList) == 1:
+        if user == "n":
+            player.announce()
+            player.move_to(player.current_room.n_to)
+        elif user == "e":
+            try:
+                player.set_current_room(player.current_room.e_to)
+                print("You have entered", player.current_room)
+            except:
+                print("Can't go east from here")
+        elif user == "s":
+            try:
+                player.set_current_room(player.current_room.s_to)
+                print("You have entered", player.current_room)
+            except:
+                print("Can't go south from here")
+        elif user == "w":
+            try:
+                player.set_current_room(player.current_room.w_to)
+                print("You have entered", player.current_room)
+            except:
+                print("Can't go west from here")
+        user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+        userList = user.split(" ")
 
+    # elif len(userList) == 2:
+    #     if userList[0] == ""
 
         

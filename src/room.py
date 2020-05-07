@@ -4,9 +4,29 @@ class Room:
     def __init__(self, name, description):
         self.name = name
         self.description = description
+        self.items = []
 
     def __str__(self):
         return self.name
+    
+    def add_item(self, item):
+        self.items.append(item)
 
+    def set_items(self, new_items):
+        self.items = new_items
 
+    def remove_item(self, item):
+        self.items = self.items.remove(item)
 
+    def has_items(self):
+        has = False
+        if len(self.items) > 0:
+            has = True
+        return has
+
+    def state_items(self):
+        if len(self.items) == 0:
+            print("No Items")
+        else:
+            for i in self.items:
+                print(i)
