@@ -65,7 +65,10 @@ room["foyer"].set_items([potted_plant])
 
 player = Player("Igor", room["outside"])
 player.announce()
-user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+msg = "[n] North  [e] East  [s] South  [w] West  [q] Quit \n\
+To pick up or drop an item, use pick <item> or drop <item>."
+user = input(msg)
+
 userList = user.split(" ")
 while not user == "q":
     #user chooses north
@@ -82,18 +85,25 @@ while not user == "q":
         elif user == "w":
             player.announce()
             player.move_to(player.current_room.w_to)
-        user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
-        userList = user.split(" ")
-
+        else:
+            print("The acceptable direction inputs are n, e, s, w")
+    #user chooses to pick up or drop item    
     elif len(userList) == 2:
         if userList[0] == "get":
             player.pickup_item(userList[1])
         elif userList[0] == "drop":
             player.drop_item(userList[1])
     
-        
-        user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+        else:
+            print('The accetable item verbs are pick an drop')
+        user = input(msg)
         userList = user.split(" ")
+    #catch all for more than 3 input string
+    else:
+        print('Too many arguments')
+        user = input(msg)
+        userList = user.split(" ")
+
 
 
         
