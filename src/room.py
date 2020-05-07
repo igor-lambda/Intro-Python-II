@@ -16,7 +16,7 @@ class Room:
         self.items = new_items
 
     def remove_item(self, item):
-        self.items = self.items.remove(item)
+        self.items.remove(item)
 
     def has_items(self):
         has = False
@@ -31,3 +31,6 @@ class Room:
         else:
             for i in self.items:
                 print(i)
+    
+    def get_items(self):
+        return self.items

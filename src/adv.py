@@ -38,7 +38,7 @@ room['treasure'].s_to = room['narrow']
 
 # Define items
 grass = Item("Grass", "Shitty green plant")
-dirt = Item("Dirst", "Brown stuff everywhere")
+dirt = Item("Dirt", "Brown stuff everywhere")
 potted_plant = Item("Potted_Plant", "Plant in a clay pot")
 
 
@@ -86,6 +86,10 @@ while not user == "q":
         userList = user.split(" ")
 
     elif len(userList) == 2:
-        if userList[0] == ""
+        if userList[0] == "get":
+            player.pickup_item(userList[1])
+        user = input("[n] North  [e] East  [s] South  [w] West  [q] Quit: \n")
+        userList = user.split(" ")
+
 
         

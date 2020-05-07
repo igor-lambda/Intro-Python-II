@@ -1,5 +1,7 @@
 # Write a class to hold player information, e.g. what room they are in
 # currently.
+
+
 class Player:
     def __init__(self, name, initial_room):
         self.name = name
@@ -16,35 +18,42 @@ class Player:
         self.inventory.append(item)
 
     def state_inventory(self):
+        print("Your invetory currently has: ")
         if len(self.inventory) == 0:
-            return "nothing"
+            print("nothing")
         else:
-            return ", ".join((self.inventory))
-            
+            for i in self.inventory:
+                print(i)
+
     def announce(self):
         print(self.state_current_room())
         self.current_room.state_items()
         print("Type 'get <item>' to pick up an item.")
-        print("You currently have {stuff} in your inventory \n".format(stuff=self.state_inventory()))
-    
+        self.state_inventory()
+
     def move_to(self, newRoom):
-        try: 
+        try:
             self.set_current_room(self.current_room.n_to)
             print("You have entered", self.current_room)
         except:
             print("Can't go in that direction")
-    
+
     def pickup_item(self, item_name):
         # find item by name
+        print('item_name', item_name)
         item = None
-        for i in self.current_room.items:
+        for i in self.current_room.get_items():
+            print('itemx', i)
             if i.name == item_name:
                 item = i
+        # for i in self.current_room.items():
+            # if i.name == item_name:
+            #     item = i
         # take item out of current rooms items list
         self.current_room.remove_item(item)
         # add item to player inventory
         self.add_to_inventory(item)
         # toggle item's picked_up property
         item.pick()
-        self.announce()
-    
+        self.state_inventory()
+        self.current_room.state_items()
