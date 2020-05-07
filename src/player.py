@@ -41,9 +41,12 @@ class Player:
     def pickup_item(self, item_name):
         # find item by name
         item = None
-        for i in self.current_room.get_items():
-            if i.name == item_name:
-                item = i
+        try:
+            for i in self.current_room.get_items():
+                if i.name == item_name:
+                    item = i
+        except: 
+            print('Please make sure item is in room and spelled correctily')
         # take item out of current rooms items list
         self.current_room.remove_item(item)
         # add item to player inventory
@@ -57,12 +60,15 @@ class Player:
         self.inventory.remove(item)
 
     def drop_item(self, item_name):
-        #find item by name
+        # find item by name
         item = None
-        for i in self.inventory:
-            print('itemx', i)
-            if i.name == item_name:
-                item = i
+        try:
+            for i in self.inventory:
+                print('itemx', i)
+                if i.name == item_name:
+                    item = i
+        except:
+            print('Make sure item is in inventory and spelled correctly')
         print('inventory item', item)
         # remove item from inventory
         self.remove_from_inventory(item)
